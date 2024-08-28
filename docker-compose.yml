@@ -1,0 +1,28 @@
+networks:
+    bridge:
+
+services:
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
+        environment:
+            - discovery.type=single-node
+            - xpack.security.enabled=false  # Disable security to use HTTP
+            - xpack.security.http.ssl.enabled=false
+        ports:
+            - "9200:9200"
+        networks:
+            - bridge
+
+    elasticsearch-example:
+        image: golang-elasticsearch-example
+        restart: on-failure
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            - ELASTICSEARCH_URL=http://elasticsearch:9200
+            - ELASTICSEARCH_SERVER=elasticsearch:9200
+        networks:
+            - bridge
+        depends_on:
+            - elasticsearch
