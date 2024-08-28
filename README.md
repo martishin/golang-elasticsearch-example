@@ -1,7 +1,7 @@
 # Go Elasticsearch Example
 
 ## Description
-This project is a realistic example of using Go with Elasticsearch to manage and analyze log data from microservices.  
+This project is an example of using Go with Elasticsearch to manage and analyze log data from microservices.  
 It demonstrates how to connect to an Elasticsearch cluster, index log data, and perform queries to analyze the logs.
 
 ## Running Locally
